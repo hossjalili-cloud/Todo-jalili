@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>To Do List شمسی</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: sans-serif; direction: rtl; background: #f4f4f4; padding: 15px; }
+    input, button { padding: 10px; margin: 5px 0; width: 100%; }
+    ul { list-style: none; padding: 0; }
+    li { background: white; padding: 10px; margin-top: 5px; }
+    small { color: gray; }
+  </style>
+</head>
+<body>
+
+<h2>لیست کارها (تاریخ شمسی)</h2>
+
+<input id="task" placeholder="کار جدید..." />
+<button onclick="addTask()">➕ افزودن</button>
+
+<ul id="list"></ul>
+
+<script src="https://cdn.jsdelivr.net/npm/jalaali-js/dist/jalaali.min.js"></script>
+<script>
+function getJalaliDate() {
+  const d = new Date();
+  const j = jalaali.toJalaali(d);
+  return `${j.jy}/${j.jm}/${j.jd}`;
+}
+
+function addTask() {
+  const task = document.getElementById("task").value;
+  if (!task) return;
+
+  const li = document.createElement("li");
+  li.innerHTML = task + "<br><small>" + getJalaliDate() + "</small>";
+
+  document.getElementById("list").appendChild(li);
+  document.getElementById("task").value = "";
+}
+</script>
+
+</body>
+</html>
